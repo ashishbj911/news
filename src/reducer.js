@@ -23,11 +23,6 @@ const reducer = (state, action) => {
         ...state,
         hits: state.hits.filter((story) => story.objectID !== action.payload),
       }
-      case SET_ACTIVE:
-      return {
-        ...state,
-        activeLink: true,
-      }
     case HANDLE_SEARCH:
       return { ...state, query: action.payload, page: 0 }
     case HANDLE_PAGE:

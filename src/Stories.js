@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 import { useGlobalContext } from './context'
 
 const Stories = () => {
-  const { isLoading, hits, removeStory,activeLink,handleLink } = useGlobalContext()
+  const { isLoading, hits, removeStory} = useGlobalContext()
+  const [active,setActive] = useState('null')
   if (isLoading) {
     return <div className='loading'></div>
   }
@@ -12,13 +13,13 @@ const Stories = () => {
       {hits.map((story) => {
         const { objectID, title, num_comments, url, points, author } = story
         return (
-          <article key={objectID} className={activeLink ? 'story' : ''}>
+          <article key={objectID} className={active && 'story'}>
             <h4>{title}</h4>
             <p className='info'>
               {points} points by <span>{author} | </span> {num_comments}{' '}
               comments
             </p>
-            <button type="button" class="btn" onClick={handleLink}>Add Active</button>
+            <button type="button" class="btn" onClick={() => setActive(!active)}>Add Active</button>
             <div>
               <a
                 href={url}

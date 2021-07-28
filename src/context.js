@@ -18,7 +18,6 @@ const initialState = {
   query: 'react',
   page: 0,
   nbPages: 0,
-  activeLink:false,
 }
 
 const AppContext = React.createContext()
@@ -49,16 +48,13 @@ const AppProvider = ({ children }) => {
   const handlePage = (value) => {
     dispatch({ type: HANDLE_PAGE, payload: value })
   }
-  const handleLink = () => {
-    dispatch({ type: SET_ACTIVE })
-  }
   useEffect(() => {
     fetchStories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`)
   }, [state.query, state.page])
 
   return (
     <AppContext.Provider
-      value={{ ...state, removeStory, handleSearch, handlePage,handleLink }}
+      value={{ ...state, removeStory, handleSearch, handlePage }}
     >
       {children}
     </AppContext.Provider>
