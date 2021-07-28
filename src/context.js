@@ -6,7 +6,6 @@ import {
   REMOVE_STORY,
   HANDLE_PAGE,
   HANDLE_SEARCH,
-  SET_ACTIVE,
 } from './actions'
 import reducer from './reducer'
 
